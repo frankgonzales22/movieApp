@@ -1,0 +1,260 @@
+/* ProductsPage.css */
+/* Override the default uppercase style for IonSegmentButton */
+ion-segment-button ion-label {
+    text-transform: none;
+    /* Disable uppercase */
+    font-size: 2.5vw;
+    /* Adjust the font size to fit screen */
+    
+}
+
+/* You can also use media queries to fine-tune the font size for smaller devices */
+@media (min-width: 768px) {
+    ion-segment-button ion-label {
+        font-size: 2vw;
+        /* Decrease font size for larger screens */
+    }
+}
+
+/* Additional styles for segment titles and descriptions */
+.segment_Title {
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.segment_description p {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+    
+}
+
+/* Override the toolbar background and remove border */
+.toolbar-container {
+    background-color: #177D54 !important;
+    --ion-background-color: #177D54 !important;
+    --background: #177D54 !important;
+    --border-width: 0 !important;
+    /* Removes the border */
+    
+}
+
+.background-content{
+    --ion-background-color: #177D54 !important;
+}
+
+inner-scroll scroll-y {
+    background-color: #177D54 !important;
+    --ion-background-color: #177D54 !important;
+}
+
+/* Remove the border from IonHeader */
+ion-header {
+    --border-width: 0 !important;
+    z-index: unset !important;
+    
+}
+
+ion-page {
+    z-index: unset !important;
+
+}
+
+/* Segment Title and Description Section */
+.segment-section {
+    background-color: #177D54;
+    padding: 20px;
+}
+
+.segment_Title {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.segment_description p {
+    color: white;
+    margin-bottom: 20px;
+}
+.scrollable-content {
+    height: calc(90vh - 250px);  /* Adjust the height based on the height of the header */
+    overflow-y: auto;             /* Enable vertical scrolling */
+    padding: 0 10px;              /* Optional padding */
+}
+
+/* Segment buttons and display section */
+/* Ensure the container has some margin and white background */
+.segment-container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 200;
+    margin: 10px 4px 4px 4px;
+}
+
+.ion-segment {
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+html div .scroll-y {
+    overflow-y: clip !important;
+    --overscroll-behavior-y: contain;
+}
+
+.ion-list {
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.ion-item {
+    border-radius: 8px;
+}
+
+/* styles.css or CircularIcon.css */
+.circular-icon {
+    border: 1px solid gray;
+    border-radius: 50%; /* Keep it circular */
+    background-color: rgba(128, 128, 128, 0.6); /* Light opacity background for icon */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Fixed width */
+    height: 40px; /* Fixed height */
+}
+
+.circular-icon .icon {
+    font-size: x-large; /* Use a class for the icon styling */
+    color: #fff; /* Icon color */
+}
+
+.custom-button {
+    background-color: rgba(128, 128, 128, 0.6); /* Custom background color */
+    color: #fff; /* White text for contrast */
+    padding: 2.5px 5px; /* Halved padding */
+    border-radius: 20px; /* Halved border radius for rounder corners */
+    display: flex; /* Center the contents */
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem; /* Reduced font size to half */
+    text-transform: none; /* Prevent text from being capitalized */
+
+    
+}
+
+
+
+
+
+
+.ion-card {
+    height: 260px;
+    width : 100%;  /*Take up full width of the Swiper slide*/
+    max-width: none;/* Disable maxWidth to ensure equal width */
+    padding: 10px;/* Optional: Add padding for better spacing */
+    position: relative;/* Maintain stacking context for pseudo-element */
+    overflow: hidden;/*  Hide the overlay going beyond the card bounds */
+    flex-direction: column;/*  Stack header and content*/
+    margin-top: 10px;
+}
+
+.img-style{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: linear-gradient(to top, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)), url(${georgeImage2}); */
+    background-size: cover;
+    background-position: center;
+    z-index: 0; /* Ensure the image stays behind content */
+}
+
+
+.top-right_content {
+    position: absolute;
+    top: 10px; /* Position at the top */
+    right: 10px; /* Align to the right */
+    display: flex;
+    align-items: center; 
+    gap: 10px; /* Reduced gap between the button and the icon */
+    z-index: 2; /* Ensure it stays above the background */
+}
+
+
+.ion-bottom-text {
+    text-align: left;
+    color: #FFFFFF; /* Text color remains white for contrast */
+    z-index: 1; /* Ensure the text appears above the background */
+    position: absolute; /* Position content absolutely */
+   /*  bottom: 10px; Align content at the bottom of the card */
+    bottom: -10px; /* Align content at the bottom of the card */
+    left: 10px; /* Adjust left margin for better spacing */
+    right: 10px; /* Adjust right margin for better spacing */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add subtle text shadow for better readability */
+}
+
+
+
+
+ion-segment-button::part(indicator-background) {
+    background: #08a391;
+  }
+  
+  /* Material Design styles */
+  ion-segment-button.md::part(native) {
+    color: #000;
+  }
+  
+  .segment-button-checked.md::part(native) {
+    color: #08a391;
+  }
+  
+  ion-segment-button.md::part(indicator-background) {
+    height: 4px;
+  }
+  
+  /* iOS styles */
+  ion-segment-button.ios::part(native) {
+    color: #08a391;
+  }
+  
+  .segment-button-checked.ios::part(native) {
+    color: #fff;
+  }
+  
+  ion-segment-button.ios::part(indicator-background) {
+    border-radius: 20px;
+  }
+
+
+
+  /* General styles for the segment buttons */
+ion-segment-button {
+    min-width: unset; /* Remove any minimum width restrictions */
+    flex-grow: 1;     /* Allow the buttons to flex and grow to take equal space */
+    padding: 8px;     /* Adjust padding to fit content better */
+    text-align: center; /* Ensure text is centered in the button */
+  }
+  
+  /* Stacking text and adjusting font size for smaller devices */
+  @media (max-width: 600px) {
+    ion-segment-button ion-label {
+      white-space: normal; /* Allow text to wrap */
+      font-size: 11px;     /* Reduce font size on smaller screens */
+      text-align: center;  /* Ensure text is centered */
+    }
+  }
+  
+  /* Flex container for the segment to adjust the button width dynamically */
+  ion-segment {
+    display: flex;
+    justify-content: space-between; /* Ensure equal space between buttons */
+  }
+
+
+  

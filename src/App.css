@@ -1,0 +1,44 @@
+/* Mobile-first default style (tab bar on the bottom) */
+.web-tab-bar {
+    background-color: #ffffff;
+  }
+  
+  /* Style for wider screens (desktop) */
+  @media (min-width: 768px) {
+    .web-tab-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+  
+    /* Move tab bar to the top for larger screens */
+    .web-tab-bar-top {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #ffffff;
+    }
+  }
+  
+  /* Example for desktop-style tab bar on the side */
+  @media (min-width: 1024px) {
+    .web-tab-bar {
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      background-color: #f8f9fa;
+    }
+    
+    /* Adjust content padding to make space for the sidebar */
+    .ion-page {
+      padding-left: 200px;
+    }
+  }
+  
