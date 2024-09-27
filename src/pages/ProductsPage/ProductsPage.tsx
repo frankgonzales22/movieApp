@@ -8,6 +8,9 @@ import dom from '../../assets/images/dom.jpg'
 import claire from '../../assets/images/claire.jpg'
 import { products } from './products';
 import TraditionalPlans from './TraditionalPlans/TraditionalPlans';
+import CremationalPlans from './CremationalPlans/CremationalPlans';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { cremationProducts } from './cremationProducts';
 
 const ProductsPage: React.FC = () => {
     const segment1Values = ["segment 1 - aa", "segment 1 - bb", "segment 1 - cc"];
@@ -42,9 +45,26 @@ const ProductsPage: React.FC = () => {
         }
     }
 
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    const handleSlideChange = (swiper: any) => {
+        setActiveIndex(swiper.activeIndex);
+    };
+
+    const handleSwiperProgress = (swiper: any) => {
+        swiper.slides.forEach((slide: any, index: number) => {
+            const slideProgress = slide.progress;
+            const scale = 1 - Math.min(Math.abs(slideProgress) * 0.3, 0.3);  // Max zoom out to 70% of the original size
+            
+            // Apply scale only to the outer slide container, not the image itself
+            slide.style.transform = `scale(${scale})`;
+        });
+    };
+
+
     return (
-        <IonPage className='scroll-y'>
-            <IonContent className='ion-content background-content scroll-y'>
+        <IonPage >
+            <IonContent className='ion-content background-content'>
                 {/* Fixed Segment Title and Description Section */}
                 <div className="segment-section scroll-y">
                     <IonButton color="none" routerLink="/app" routerDirection="back" fill='clear' style={{ marginLeft: '-25px' }}>
@@ -62,40 +82,61 @@ const ProductsPage: React.FC = () => {
 
                 {/* Scrollable Content */}
                 {/* <div className="scrollable-content"> */}
-                    <div className="segment-container scroll-y">
-                        <div className="page-container">
-                            <div className="fixed-segment">
-                                <IonSegment
-                                    value={selectedSegment}
-                                    onIonChange={(e: any) => {
-                                        const selected = e.detail.value;
-                                        setSelectedSegment(selected);
-                                        toggleSegment(selected);
-                                    }}
-                                >
-                                    <IonSegmentButton value="segment1">
-                                        <IonLabel>Show All</IonLabel>
-                                    </IonSegmentButton>
-                                    <IonSegmentButton value="segment2">
-                                        <IonLabel>Traditional Plans</IonLabel>
-                                    </IonSegmentButton>
-                                    <IonSegmentButton value="segment3">
-                                        <IonLabel>Cremation Plans</IonLabel>
-                                    </IonSegmentButton>
-                                </IonSegment>
-                            </div>
+                <div className="segment-container ">
+                    <div className="page-container">
+                        <div className="fixed-segment">
+                            <IonSegment
+                                value={selectedSegment}
+                                onIonChange={(e: any) => {
+                                    const selected = e.detail.value;
+                                    setSelectedSegment(selected);
+                                    toggleSegment(selected);
+                                }}
+                            >
+                                <IonSegmentButton value="segment1">
+                                    <IonLabel>Show All</IonLabel>
+                                </IonSegmentButton>
+                                <IonSegmentButton value="segment2">
+                                    <IonLabel>Traditional Plans</IonLabel>
+                                </IonSegmentButton>
+                                <IonSegmentButton value="segment3">
+                                    <IonLabel>Cremation Plans</IonLabel>
+                                </IonSegmentButton>
+                            </IonSegment>
+                        </div>
 
-
-
-                            <div className="scrollable-content">
+                        <div className="scrollable-content">
+                            {selectedSegment == 'segment2' &&
                                 <div style={{ backgroundColor: 'white', paddingTop: '15px' }}>
                                     {products.map((product, index) => (
                                         <TraditionalPlans key={index} product={product} />
                                     ))}
                                 </div>
-                            </div>
+                            }
+                            {selectedSegment == 'segment3' &&
+                                <div style={{ backgroundColor: 'white', paddingTop: '15px' }}>
+                                    {/* <CremationalPlans key={0} product={products[0]} /> */}
+                                    <Swiper
+                                        spaceBetween={10}
+                                        onSlideChange={handleSlideChange}
+                                        onProgress={handleSwiperProgress}
+                                        centeredSlides={true}
+                                        // slidesPerView={1.5}  // Adjust for how many slides are visible
+                                        watchSlidesProgress={true}  // Enables slide progress tracking
+
+                                        
+                                    >
+                                        {cremationProducts.map((product, index) => (
+                                            <SwiperSlide key={index}>
+                                                <CremationalPlans product={product} />
+                                            </SwiperSlide>
+                                        ))}
+                                    </Swiper>
+                                </div>
+                            }
                         </div>
                     </div>
+                </div>
                 {/* </div> */}
             </IonContent>
         </IonPage>
