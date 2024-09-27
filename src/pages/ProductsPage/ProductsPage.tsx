@@ -17,10 +17,12 @@ const ProductsPage: React.FC = () => {
     const segment2Values = ["segment 2 - xx", "segment 2 - yy", "segment 2 - zz"];
     const segment3Values = ["segment 3 - xx", "segment 3 - yy", "segment 3 - zz"];
 
-    const [selectedSegment, setSelectedSegment] = useState<string>("segment1");
-    const [segmentValues, setSegmentValues] = useState<any>(segment1Values);
-    const [segmentTitle, setSegmentTitle] = useState<string>("Show All");
-    const [segmentDescription, setSegmentDescription] = useState<string>("Description for Show All");
+    const [selectedSegment, setSelectedSegment] = useState<string>("segment2");
+    const [segmentValues, setSegmentValues] = useState<any>(segment2Values);
+    // const [segmentTitle, setSegmentTitle] = useState<string>("Show All");
+    const [segmentTitle, setSegmentTitle] = useState<string>("Traditional Plans");
+    // const [segmentDescription, setSegmentDescription] = useState<string>("Description for Show All");
+    const [segmentDescription, setSegmentDescription] = useState<string>("St. Peter Pre-paid DeathCare Plans that offer anti-inflation benefits and ensure you receive a lifetime Memorial Service Package of your choice.");
 
     function toggleSegment(selectedSegment?: string) {
         console.log("Selected segment is: " + selectedSegment);
@@ -55,7 +57,6 @@ const ProductsPage: React.FC = () => {
         swiper.slides.forEach((slide: any, index: number) => {
             const slideProgress = slide.progress;
             const scale = 1 - Math.min(Math.abs(slideProgress) * 0.3, 0.3);  // Max zoom out to 70% of the original size
-            
             // Apply scale only to the outer slide container, not the image itself
             slide.style.transform = `scale(${scale})`;
         });
@@ -93,9 +94,9 @@ const ProductsPage: React.FC = () => {
                                     toggleSegment(selected);
                                 }}
                             >
-                                <IonSegmentButton value="segment1">
+                                {/* <IonSegmentButton value="segment1">
                                     <IonLabel>Show All</IonLabel>
-                                </IonSegmentButton>
+                                </IonSegmentButton> */}
                                 <IonSegmentButton value="segment2">
                                     <IonLabel>Traditional Plans</IonLabel>
                                 </IonSegmentButton>
@@ -118,13 +119,11 @@ const ProductsPage: React.FC = () => {
                                     {/* <CremationalPlans key={0} product={products[0]} /> */}
                                     <Swiper
                                         spaceBetween={10}
-                                        onSlideChange={handleSlideChange}
+                                        // onSlideChange={handleSlideChange}
                                         onProgress={handleSwiperProgress}
                                         centeredSlides={true}
                                         // slidesPerView={1.5}  // Adjust for how many slides are visible
                                         watchSlidesProgress={true}  // Enables slide progress tracking
-
-                                        
                                     >
                                         {cremationProducts.map((product, index) => (
                                             <SwiperSlide key={index}>

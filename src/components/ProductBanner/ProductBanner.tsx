@@ -35,7 +35,7 @@ const ProductBanner = () => {
                     },
                 }}
             >
-                <SwiperSlide>
+                <SwiperSlide key={0}>
                     <IonCard
                         style={{
                             height: '170px',
@@ -85,13 +85,13 @@ const ProductBanner = () => {
 
                 </SwiperSlide>
 
-                <SwiperSlide>
+                <SwiperSlide key={1}>
                     <IonCard
                         style={{
                             height: '170px',
                             width: '100%', // Take up full width of the Swiper slide
                             maxWidth: 'none', // Disable maxWidth to ensure equal width
-                            border: '1px solid green',
+                            // border: '1px solid green',
                             display: 'flex', // Use flexbox
                             flexDirection: 'column', // Stack header and content
                             justifyContent: 'space-between', // Push content to top and bottom
@@ -141,7 +141,6 @@ const ProductBanner = () => {
                             height: '170px',
                             width: '100%', // Take up full width of the Swiper slide
                             maxWidth: 'none', // Disable maxWidth to ensure equal width
-                            border: '1px solid green',
                             // display: 'flex', // Use flexbox
                             flexDirection: 'column', // Stack header and content
                             justifyContent: 'space-between', // Push content to top and bottom
@@ -191,7 +190,6 @@ const ProductBanner = () => {
                             height: '170px',
                             width: '100%', // Take up full width of the Swiper slide
                             maxWidth: 'none', // Disable maxWidth to ensure equal width
-                            border: '1px solid green',
                             display: 'flex', // Use flexbox
                             flexDirection: 'column', // Stack header and content
                             justifyContent: 'space-between', // Push content to top and bottom

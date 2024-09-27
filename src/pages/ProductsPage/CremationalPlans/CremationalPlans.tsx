@@ -16,8 +16,11 @@ interface CremationalPlansProps {
 const CremationalPlans: React.FC<CremationalPlansProps> = ({ product }) => {
     return (
         <React.Fragment>
-            <div style={{display : 'block', width : 'inherit'}}>
-                <IonCard className='ion-card' style={{ height: '440px' }}>
+            <div style={{ display: 'block', width: 'inherit' }}>
+                <IonCard
+                    className='ion-card'
+                    style={{ height: '340px' }}
+                >
                     <div
                         className='img-style'
                         style={{
