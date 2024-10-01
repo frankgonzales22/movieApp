@@ -46,79 +46,11 @@ import PlansPage from './pages/PlansPage/PlansPage';
 setupIonicReact();
 
 const App: React.FC = () => {
-  // const [tabBarSlot, setTabBarSlot] = useState<'bottom' | 'top'>('bottom');
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     if (window.innerWidth >= 768) {
-  //       setTabBarSlot('top'); // Use top slot on larger screens
-  //     } else {
-  //       setTabBarSlot('bottom'); // Keep bottom slot for mobile
-  //     }
-  //   };
-
-  //   window.addEventListener('resize', handleResize);
-  //   handleResize(); // Check the initial size
-
-  //   return () => window.removeEventListener('resize', handleResize);
-  // }, []);
   setupIonicReact();
 
   return (
-    // <IonApp>
-    //   <IonReactRouter>
-    //     <IonRouterOutlet>
-    //       <Route path="/" component={Tabs} />2
-    //       <Route exact path="/home/productsPage" component={ProductsPage}/>
 
-
-    //     </IonRouterOutlet>
-    //   </IonReactRouter>
-    //   {/* <IonReactRouter>
-    //     <IonTabs>
-    //       <IonRouterOutlet>
-    //         <Route exact path="/">
-    //           <Redirect to="/home" />
-    //         </Route>
-    //         <Route exact path="/home">
-    //           <Home />
-    //         </Route>
-    //         <Route exact path="/transaction">
-    //           <Transactions />
-    //         </Route>
-    //         <Route exact path="/plans">
-    //           <Plans />
-    //         </Route>
-    //         <Route exact path="/account">
-    //           <Account />
-    //         </Route>
-    //         <Route exact path="/home/productsPage">
-    //           <ProductsPage />
-    //         </Route>
-
-    //       </IonRouterOutlet>
-
-    //       <IonTabBar slot={tabBarSlot} className="web-tab-bar">
-    //         <IonTabButton tab="home" href="/home">
-    //           <IonIcon aria-hidden="true" icon={homeOutline} />
-    //           <IonLabel>Home</IonLabel>
-    //         </IonTabButton>
-    //         <IonTabButton tab="transaction" href="/transaction">
-    //           <IonIcon aria-hidden="true" icon={cartOutline} />
-    //           <IonLabel>Transaction</IonLabel>
-    //         </IonTabButton>
-    //         <IonTabButton tab="plans" href="/plans">
-    //           <IonIcon aria-hidden="true" icon={documentTextOutline} />
-    //           <IonLabel>Plans</IonLabel>
-    //         </IonTabButton>
-    //         <IonTabButton tab="account" href="/account">
-    //           <IonIcon aria-hidden="true" icon={personOutline} />
-    //           <IonLabel>Account</IonLabel>
-    //         </IonTabButton>
-    //       </IonTabBar>
-    //     </IonTabs>
-    //   </IonReactRouter> */}
-    // </IonApp>
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>

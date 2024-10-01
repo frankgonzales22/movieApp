@@ -1,37 +1,40 @@
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow } from "@ionic/react"
-
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonGrid, IonCol, IonRow, IonButtons, IonButton, IonIcon } from "@ionic/react"
+// import './Account.css'
+import { chevronBackOutline, personCircleOutline, chevronForwardOutline } from "ionicons/icons"
+import AccountHeader from "../components/AccountHeader/AccountHeader";
+import AccountList from "../components/AccountList/AccountList";
+import { accountItems } from "../components/AccountList/accountItems";
 const Account: React.FC = () => {
- 
-    const myStyle = {
-        backgroundColor : '#135d54',
-        width: '300px',
-        height: '300px',
-        border: '1px solid #fff'
-    }
-    
-return (
-    <IonPage>
-        <IonHeader className=''>
-            {/* <IonToolbar >
-                    <IonTitle>Account</IonTitle>
+    const handleEndClick = () => {
+        console.log("End button clicked");
+    };
+
+
+    return (
+        <IonPage >
+            <IonHeader className='account-header'>
+                {/* <IonToolbar>
+
+                    <IonGrid>
+                        <IonRow>
+                            <IonIcon icon={personCircleOutline} style={{ fontSize: '32px', borderRadius: '50%' }} color="light" />
+                            <IonCol size="10" onClick={handleEndClick}>
+                                JOSE FRANK GONZALES
+                            </IonCol>
+                            <IonIcon onClick={handleEndClick} icon={chevronForwardOutline} style={{ fontSize: '32px', borderRadius: '50%' }} color="light" />
+
+                        </IonRow>
+                    </IonGrid>
                 </IonToolbar> */}
+                <AccountHeader />
+            </IonHeader>
 
-        </IonHeader>
-
-        <IonContent>
-            <IonGrid>
-                <IonRow>
-                    <IonCol offset="6" offset-md="4" offset-lg="2">
-                        1
-                    </IonCol>
-                    <IonCol offset="6" offset-md="4" offset-lg="2">
-                        2
-                    </IonCol>
-                </IonRow>
-            </IonGrid>
-        </IonContent>
-    </IonPage>
-)
+            <IonContent >
+                <AccountList accountItems={accountItems} />
+                
+            </IonContent>
+        </IonPage>
+    )
 }
 
 export default Account

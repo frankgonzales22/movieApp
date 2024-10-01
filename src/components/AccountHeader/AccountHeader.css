@@ -1,0 +1,97 @@
+/* Toolbar customization */
+.account-header ion-toolbar {
+    --background: #177D54;
+    --border-color: #177D54;
+    --color: white;
+    --min-height: 120px; /* Increased height of the toolbar */
+  
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+/* General grid padding */
+.account-header ion-grid {
+    --ion-grid-padding: 5px;
+}
+
+/* Profile Avatar Styling */
+.profile-avatar {
+    width: 100px;  /* Set the width to 100px */
+    height: 100px; /* Set the height to 100px */
+    border-radius: 50px; /* Make it round */
+    overflow: hidden; /* Ensure the image stays within the bounds */
+    display: flex; /* Center the image */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    border : 2px solid white;
+}
+
+/* Ensure the img takes full size */
+.profile-avatar img {
+    width: 100%; /* Make the image fill the div */
+    height: 100%; /* Make the image fill the div */
+    object-fit: cover; /* Cover the div without distortion */
+}
+
+/* Chevron Icon Styling */
+.chevron-icon {
+    font-size: 45px; /* Increased size of the chevron */
+}
+
+/* Account Info Styling */
+.account-info {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.account-name,
+.account-email,
+.account-plan {
+    font-size: 18px; /* Increased font size */
+    line-height: 1.5;
+}
+
+.account-name {
+    font-weight: bold;
+}
+
+.account-email,
+.account-plan {
+    font-weight: normal;
+}
+
+/* Ensure all elements are vertically and horizontally centered */
+.ion-text-center {
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive Design for smaller devices */
+@media (max-width: 576px) {
+    .profile-avatar {
+        width: 100px; /* Smaller size for smaller devices */
+        height: 100px;
+    }
+
+    .chevron-icon {
+        font-size: 35px; /* Smaller chevron size */
+    }
+
+
+    .account-email,
+    .account-plan {
+        font-size: 14px; /* Smaller text */
+    }
+    .account-name{
+        font-size: 16px;
+    }
+
+    /* REMOVED BECAUSE IT SHOWS THE BORDER ON SMALL DEVICES*/
+    /* .account-header ion-toolbar {
+        --min-height: 120px; 
+        padding: 10px 0;
+    } */
+
+  
+}

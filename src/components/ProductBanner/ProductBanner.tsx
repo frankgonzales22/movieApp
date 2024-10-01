@@ -10,7 +10,7 @@ const ProductBanner = () => {
     return (
         <>
             <Swiper
-                loop={true}
+                // loop={true}
                 spaceBetween={10} // Space between the slides
                 slidesPerView={2} // Display 2 slides equally per view
                 style={{

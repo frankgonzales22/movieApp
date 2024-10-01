@@ -27,7 +27,7 @@ const Home: React.FC = () => {
       <IonContent > 
           <HeaderGreetings/>
           <HomeCard />
-          {/* <Banner /> */}
+          <Banner />
           <TitleViewAll title="Products"/>
           <ProductBanner />
           <TitleViewAll title="eServices"/>

@@ -12,12 +12,14 @@ const Banner = () => {
         { title: "Connect your Account to eStore 2" },
         { title: "Connect your Account to eStore 3" },
     ];
+
+    console.log(slides.map ((i,index) => i + 'yeah'))
     return (
         <>
             <Swiper
-                loop={true}
+                // loop={true}
                 initialSlide={0} /* Start from the first slide */
-                watchOverflow={true} /* Ensures proper behavior when slides are fewer than viewport */
+                watchOverflow={false} /* Ensures proper behavior when slides are fewer than viewport */
                 spaceBetween={10} /* Small positive space for smooth transitions */
                 slidesPerView={1} /* Show a portion of the next slide */
                 centeredSlides={true} /* Disable centered slides to remove extra space */
@@ -43,7 +45,7 @@ const Banner = () => {
                     },
                 }}
             >
-                {slides.concat(slides).map((slide, index) => (
+                {slides.map((slide, index) => (
                     <SwiperSlide key={index}>
                         <IonCard style={{
                             background: 'linear-gradient(to right, rgba(23, 125, 84, 1), rgba(30, 182, 121, 1), rgba(23, 125, 84, 1))',
