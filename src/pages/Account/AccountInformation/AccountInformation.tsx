@@ -93,7 +93,6 @@ const AccountInformation: React.FC = () => {
                 <div className="button-container">
                     <IonButton fill='outline' color={'danger'}>
                         <IonIcon icon={exitOutline} style={{ marginRight: '10px' }} />
-
                         Request to delete my account
                     </IonButton>
                 </div>
