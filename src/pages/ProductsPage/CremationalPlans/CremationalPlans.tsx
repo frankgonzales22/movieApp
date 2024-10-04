@@ -19,7 +19,7 @@ const CremationalPlans: React.FC<CremationalPlansProps> = ({ product }) => {
             <div style={{ display: 'block', width: 'inherit' }}>
                 <IonCard
                     className='ion-card'
-                    style={{ height: '340px' }}
+                    style={{ height: '360px' }}
                 >
                     <div
                         className='img-style'

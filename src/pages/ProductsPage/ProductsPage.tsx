@@ -118,11 +118,11 @@ const ProductsPage: React.FC = () => {
                                 <div style={{ backgroundColor: 'white', paddingTop: '15px' }}>
                                     {/* <CremationalPlans key={0} product={products[0]} /> */}
                                     <Swiper
-                                        spaceBetween={10}
+                                        // spaceBetween={10}
                                         // onSlideChange={handleSlideChange}
                                         onProgress={handleSwiperProgress}
                                         centeredSlides={true}
-                                        // slidesPerView={1.5}  // Adjust for how many slides are visible
+                                        slidesPerView={1.4}  // Adjust for how many slides are visible
                                         watchSlidesProgress={true}  // Enables slide progress tracking
                                     >
                                         {cremationProducts.map((product, index) => (
