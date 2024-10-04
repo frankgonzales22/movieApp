@@ -3,11 +3,17 @@ import { chevronForwardOutline, shieldCheckmarkOutline, shieldCheckmarkSharp } f
 import React from 'react';
 import './AccountHeader.css';
 import { products } from '../../pages/ProductsPage/products';
+import { useHistory } from 'react-router-dom';
 
 const AccountHeader: React.FC = () => {
+    const history = useHistory(); // Hook to programmatically navigate
+
     const handleEndClick = () => {
-        console.log("End button clicked");
+        history.push("/accountInformation");
     };
+
+
+
 
     return (
         <IonToolbar className='account-header'>

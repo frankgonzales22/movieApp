@@ -1,0 +1,64 @@
+/* Toolbar customization */
+.account-info ion-toolbar {
+    --background: #177D54;
+    --border-color: #177D54;
+    --color: white;
+    --min-height: 145px;
+    display: flex;
+    position: relative;
+}
+
+/* Wrapper for the avatar */
+.avatar-wrapper {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: -45px; /* Adjust this to move the avatar downwards below the title */
+    left: 0;
+    right: 0;
+}
+
+/* Centered avatar */
+.toolbar-avatar {
+    width: 100px;  /* Set the width to 100px */
+    height: 100px; /* Set the height to 100px */
+    border-radius: 50px; /* Make it round */
+    overflow: hidden; /* Ensure the image stays within the bounds */
+    display: flex; /* Center the image */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    border: 2px solid white;
+    z-index: 200;
+}
+
+/* Content padding to avoid overlap with the avatar */
+.acct-info ion-content {
+    padding-top: 60px; /* Ensures content does not overlap with the avatar */
+    padding-bottom: 100px; /* Add space for the button at the bottom */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Custom styling for IonItems */
+.acct-info ion-item {
+    --inner-padding-bottom: 20px;
+    --inner-padding-top: 20px;
+}
+
+/* Custom background color for content */
+.acct-info ion-content::part(background) {
+    background-color: #f2f2f2; /* Your custom background color */
+}
+
+/* Centered button container */
+.button-container {
+    margin-top: auto; /* Push the button to the bottom */
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    padding: 20px 0; /* Add padding for spacing */
+}
+
+
+.acct-info ion-button::part(native) {
+   font-size: 1.3rem;
+}

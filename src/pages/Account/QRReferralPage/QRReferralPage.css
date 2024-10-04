@@ -1,0 +1,67 @@
+/* Toolbar customization */
+/* .qr-referral ion-toolbar {
+    --background: #FAFAFA;
+    --border-color: #FAFAFA;
+    --color: white;
+    --min-height: 90px;
+    display: flex;
+    position: relative;
+} */
+/* IonContent className='ion-content background-content'>
+
+<div className="segment-section scroll-y"> */
+
+/* ion-content background-content */
+
+/* <div className="circular-icon ">
+<IonIcon className="icon" icon={chevronBackOutline} />
+</div> */
+
+
+.qr-referral .segment-section {
+    background-color: #FAFAFA;
+    padding: 20px;
+}
+
+.qr-referral inner-scroll scroll-y {
+    background-color: #FAFAFA !important;
+    --ion-background-color: #FAFAFA !important;
+}
+
+
+
+.qr-referral .background-content {
+    --ion-background-color: #FAFAFA !important;
+}
+
+.qr-referral .toolbar-container {
+    background-color: #FAFAFA !important;
+    --ion-background-color: #FAFAFA !important;
+    --background: #FAFAFA !important;
+    --border-width: 0 !important;
+    /* Removes the border */
+
+}
+
+
+.qr-referral-circular-icon {
+
+    border-radius: 50%;
+    /* Keep it circular */
+    background-color: rgba(128, 128, 128, 0.6);
+    /* Light opacity background for icon */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    /* Fixed width */
+    height: 40px;
+    /* Fixed height */
+}
+
+.qr-referral-circular-icon .icon {
+    font-size: x-large;
+    /* Use a class for the icon styling */
+    color: #fff;
+    /* Icon color */
+}

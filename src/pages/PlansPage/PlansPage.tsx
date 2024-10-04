@@ -14,7 +14,7 @@ const PlansPage:React.FC= () => {
       </IonHeader>
 
       <IonContent fullscreen className="relative">
-  
+  s
       </IonContent>
     </IonPage>
   )

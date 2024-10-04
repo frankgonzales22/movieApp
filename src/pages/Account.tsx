@@ -13,25 +13,11 @@ const Account: React.FC = () => {
     return (
         <IonPage >
             <IonHeader className='account-header'>
-                {/* <IonToolbar>
-
-                    <IonGrid>
-                        <IonRow>
-                            <IonIcon icon={personCircleOutline} style={{ fontSize: '32px', borderRadius: '50%' }} color="light" />
-                            <IonCol size="10" onClick={handleEndClick}>
-                                JOSE FRANK GONZALES
-                            </IonCol>
-                            <IonIcon onClick={handleEndClick} icon={chevronForwardOutline} style={{ fontSize: '32px', borderRadius: '50%' }} color="light" />
-
-                        </IonRow>
-                    </IonGrid>
-                </IonToolbar> */}
                 <AccountHeader />
             </IonHeader>
 
             <IonContent >
                 <AccountList accountItems={accountItems} />
-                
             </IonContent>
         </IonPage>
     )

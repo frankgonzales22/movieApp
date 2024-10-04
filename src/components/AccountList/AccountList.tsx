@@ -1,6 +1,8 @@
 import { IonContent, IonHeader, IonIcon, IonItem, IonItemDivider, IonItemGroup, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import { personOutline } from 'ionicons/icons';
+
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+
 
 interface AccountListProps {
     accountItems: {
@@ -11,6 +13,11 @@ interface AccountListProps {
 
 const AccountList: React.FC<AccountListProps> = ({ accountItems }) => {
 
+    const history = useHistory(); // Hook to programmatically navigate
+
+    const handleEndClick = () => {
+        history.push("/accountInformation");
+    };
     return (
         <>
             {accountItems.map((section, index) => (
@@ -19,7 +26,7 @@ const AccountList: React.FC<AccountListProps> = ({ accountItems }) => {
                         <h2 style={{ fontWeight: 'bold' }}>{section.title}</h2>
                     </IonLabel>
                     {section.items.map((item, itemIndex) => (
-                        <IonItem key={itemIndex} detail style={{ padding : '8px 0'}}>
+                        <IonItem key={itemIndex} detail style={{ padding: '8px 0' }} onClick={handleEndClick}>
                             <IonIcon icon={item.icon} style={{ marginRight: '6px', color: item.color }} />
                             <IonLabel>{item.label}</IonLabel>
                         </IonItem>

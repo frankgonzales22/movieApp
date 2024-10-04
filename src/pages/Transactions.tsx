@@ -11,9 +11,7 @@ const Transactions: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen className="relative">
-        <IonButton routerLink="/app/tab1/details" expand="full">
-          Go deeper
-        </IonButton>
+   
       </IonContent>
     </IonPage>
   )

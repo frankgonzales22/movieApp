@@ -41,6 +41,10 @@ import ProductsPage from './pages/ProductsPage/ProductsPage';
 import Tabs from './Tabs';
 import Login from './pages/Login';
 import PlansPage from './pages/PlansPage/PlansPage';
+import AccountInformation from './pages/Account/AccountInformation/AccountInformation';
+import QRReferralPage from './pages/Account/QRReferralPage/QRReferralPage';
+import InputPassword from './pages/Login/InputPassword/InputPassword';
+import InputEmail from './pages/Login/InputEmail/InputEmail';
 // import './App.css'
 
 setupIonicReact();
@@ -54,10 +58,13 @@ const App: React.FC = () => {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <Route exact path="/" component={Login} />
+          <Route exact path="/" component={InputEmail} />
           <Route path="/app" component={Tabs} />
           <Route exact path="/productsPage" component={ProductsPage} />
-          <Route exact path="/app/tab1/details" component={PlansPage} />
+          <Route exact path="/accountInformation" component={AccountInformation} />
+          <Route exact path="/qrReferral" component={QRReferralPage} />
+          <Route exact path="/inputPassword" component={InputPassword} />
+ 
           {/* Add any additional routes here if needed */}
         </IonRouterOutlet>
       </IonReactRouter>
