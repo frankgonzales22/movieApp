@@ -27,7 +27,9 @@ const InputEmail: React.FC = () => {
                 }}>
                     {/* Center the "Welcome to eStore Mobile" text */}
                     <IonRow className="centered-row">
-                        <IonText style={{ fontSize: '1.5rem', marginBottom: '20px' }} className="centered-text">Welcome to eStore Mobile</IonText>
+                        <IonText style={{ fontSize: '1.5rem', marginBottom: '20px' }} className="centered-text">
+                            Welcome to eStore Mobile
+                        </IonText>
                     </IonRow>
 
                     <IonRow>

@@ -12,7 +12,7 @@ const Account: React.FC = () => {
 
     return (
         <IonPage >
-            <IonHeader className='account-header'>
+            <IonHeader className='account-header' style={{backgroundColor : '#fff'}}>
                 <AccountHeader />
             </IonHeader>
 

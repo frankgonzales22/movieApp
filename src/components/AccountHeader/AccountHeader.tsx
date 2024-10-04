@@ -12,11 +12,8 @@ const AccountHeader: React.FC = () => {
         history.push("/accountInformation");
     };
 
-
-
-
     return (
-        <IonToolbar className='account-header'>
+        <IonToolbar className='account-header'  style={{backgroundColor : '#fff'}}>
             <IonGrid>
                 <IonRow className="ion-align-items-center" style={{ padding: '40px 15px 10px 15px' }}>
                     {/* Avatar and Info Column */}
@@ -27,7 +24,7 @@ const AccountHeader: React.FC = () => {
                         <IonLabel onClick={handleEndClick} style={{ flex: 1 }}>
                             <div className="account-info" style={{ display: 'flex', flexDirection: 'column', marginLeft: '10px' }}>
                                 <div className="account-name">Peter N. Go</div>
-                                <div className="account-email">peterng@gmail.com</div>
+                                <div className="account-email">petersng@gmail.com</div>
                                 <div className="account-plan" style={{ display: 'flex', alignItems: 'center' }}>
                                     <IonIcon icon={shieldCheckmarkSharp} style={{marginRight: '2px' }} />
                                     <div>Verified Plan</div>

@@ -15,7 +15,6 @@ interface AccountInformationProps {
     };
 }
 
-
 const AccountInformation: React.FC = () => {
     const captions = [
         'First Name',

@@ -69,6 +69,9 @@ const InputPassword: React.FC = () => {
             {/* Button at the bottom */}
             <IonFooter
                 className="custom-footer"
+                style={{
+                    backgroundColor : 'white'
+                }}
             >
                 <IonButton
                     onClick={hanndleContinue}
