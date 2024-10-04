@@ -86,7 +86,7 @@ const AccountInformation: React.FC = () => {
                         <IonIcon icon={qrCode} style={{ marginRight: '10px' }} />
 
                         <IonLabel color={'medium'}>
-                            Referral
+                            Referrals
                         </IonLabel>
                     </IonItem>
                 </div>
