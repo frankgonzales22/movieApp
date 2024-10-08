@@ -1,11 +1,7 @@
-import { IonButton, IonButtons, IonCard, IonCardContent, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonPage, IonSegment, IonSegmentButton, IonToolbar } from '@ionic/react';
+import { IonButton, IonContent, IonIcon, IonLabel, IonPage, IonSegment, IonSegmentButton } from '@ionic/react';
 import React, { useState } from 'react';
-import { chevronBackOutline, cartOutline } from "ionicons/icons";
+import { chevronBackOutline } from "ionicons/icons";
 import './ProductsPage.css';  // Import the external CSS
-import georgeImage2 from '../../assets/images/george2.jpg'
-import gregory from '../../assets/images/gregory.jpg'
-import dom from '../../assets/images/dom.jpg'
-import claire from '../../assets/images/claire.jpg'
 import { products } from './products';
 import TraditionalPlans from './TraditionalPlans/TraditionalPlans';
 import CremationalPlans from './CremationalPlans/CremationalPlans';
@@ -19,9 +15,8 @@ const ProductsPage: React.FC = () => {
 
     const [selectedSegment, setSelectedSegment] = useState<string>("segment2");
     const [segmentValues, setSegmentValues] = useState<any>(segment2Values);
-    // const [segmentTitle, setSegmentTitle] = useState<string>("Show All");
     const [segmentTitle, setSegmentTitle] = useState<string>("Traditional Plans");
-    // const [segmentDescription, setSegmentDescription] = useState<string>("Description for Show All");
+
     const [segmentDescription, setSegmentDescription] = useState<string>("St. Peter Pre-paid DeathCare Plans that offer anti-inflation benefits and ensure you receive a lifetime Memorial Service Package of your choice.");
 
     function toggleSegment(selectedSegment?: string) {
@@ -82,7 +77,6 @@ const ProductsPage: React.FC = () => {
                 </div>
 
                 {/* Scrollable Content */}
-                {/* <div className="scrollable-content"> */}
                 <div className="segment-container ">
                     <div className="page-container">
                         <div className="fixed-segment">
@@ -94,9 +88,6 @@ const ProductsPage: React.FC = () => {
                                     toggleSegment(selected);
                                 }}
                             >
-                                {/* <IonSegmentButton value="segment1">
-                                    <IonLabel>Show All</IonLabel>
-                                </IonSegmentButton> */}
                                 <IonSegmentButton value="segment2">
                                     <IonLabel>Traditional Plans</IonLabel>
                                 </IonSegmentButton>
@@ -136,7 +127,6 @@ const ProductsPage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                {/* </div> */}
             </IonContent>
         </IonPage>
 

@@ -1,4 +1,4 @@
-import { IonButton, IonContent, IonFooter, IonGrid, IonIcon, IonInput, IonInputPasswordToggle, IonPage, IonRow, IonText } from '@ionic/react';
+import { IonButton, IonContent, IonFooter, IonGrid, IonIcon, IonInput, IonInputPasswordToggle, IonLoading, IonPage, IonRow, IonText } from '@ionic/react';
 import { chevronBackOutline, colorFill, eye } from 'ionicons/icons';
 import React from 'react';
 import './InputPassword.css'
@@ -75,6 +75,7 @@ const InputPassword: React.FC = () => {
             >
                 <IonButton
                     onClick={hanndleContinue}
+                    id='open-loading'
                     expand="block"
                     className='loginButtons'
                     style={{
@@ -85,6 +86,8 @@ const InputPassword: React.FC = () => {
                     }}>
                     Continue
                 </IonButton>
+                <IonLoading trigger="open-loading" message="Logging in..." duration={900} />
+
             </IonFooter>
         </IonPage>
     );

@@ -1,0 +1,1 @@
+export const GOOGLE_AUTH_ID = "61798046603-fvtf465vaeqlnp4ppp2a6803uehs6imv.apps.googleusercontent.com"

@@ -5,13 +5,44 @@ import { colorFill, logoFacebook, logoGoogle } from 'ionicons/icons';
 import { FcGoogle } from "react-icons/fc";
 import { useHistory } from 'react-router-dom';
 
-const InputEmail: React.FC = () => {
+import "@codetrix-studio/capacitor-google-auth";
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { GOOGLE_AUTH_ID } from '../../../googleAuthId';
 
+const InputEmail: React.FC = () => {
+    GoogleAuth.initialize({
+        clientId: GOOGLE_AUTH_ID,
+        scopes: ['profile', 'email'],
+        grantOfflineAccess: true,
+      });
     const history = useHistory(); // Hook to programmatically navigate
 
     const hanndleContinue = () => {
         history.push("/inputPassword");
     };
+
+
+    const signIn = async () => {
+        console.log('eti')
+        try {
+          const result = await GoogleAuth.signIn();
+          console.info('result', result);
+    
+          if (result) {
+            history.push({
+              pathname: '/inputPassword',
+              state: {
+                name: result.name ,
+                image: result.imageUrl,
+                email: result.email,
+              },
+            });
+          }
+        } catch (error) {
+          console.error('Google Sign-In failed', error);
+        }
+      };
+    
     return (
         <IonPage>
             <IonContent className="input-email">
@@ -20,10 +51,8 @@ const InputEmail: React.FC = () => {
                 </div>
 
                 <IonGrid style={{
-
                     fontWeight: '600',
                     margin: '40px 20px 20px 20px'
-
                 }}>
                     {/* Center the "Welcome to eStore Mobile" text */}
                     <IonRow className="centered-row">
@@ -40,7 +69,12 @@ const InputEmail: React.FC = () => {
                             placeholder="peter@gmail.com"
                             // class="custom"
                             maxlength={20}
-                            style={{ fontWeight: 'normal' }}
+                            style={{ 
+                                fontWeight: 'normal' ,
+                                //  border : '1px solid black', 
+                                //  padding : '5px'
+                                }}
+                            
                         />
                     </IonRow>
 
@@ -54,6 +88,7 @@ const InputEmail: React.FC = () => {
                             }}>
                             Continue
                         </IonButton>
+                        
                     </IonRow>
 
                     {/* Center the "or" text */}
@@ -71,11 +106,8 @@ const InputEmail: React.FC = () => {
 
                     <IonRow className='sso-buttons'>
                         <IonCol size='3'>
-                            {/* <IonButton  expand="block">
-                                <IonIcon icon={logoGoogle} />
-                            </IonButton> */}
+     
                             <IonButton expand="block">
-                                {/* Render FcGoogle directly */}
                                 <FcGoogle size={20} />
                             </IonButton>
                         </IonCol>
@@ -85,7 +117,7 @@ const InputEmail: React.FC = () => {
                             </IonButton>
                         </IonCol>
                         <IonCol size='6'>
-                            <IonButton expand="block" className='loginButtons'>
+                            <IonButton expand="block" className='loginButtons' onClick={signIn}>
                                 Guest
                             </IonButton>
                         </IonCol>
