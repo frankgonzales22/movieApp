@@ -13,7 +13,6 @@ const Banner = () => {
         { title: "Connect your Account to eStore 3" },
     ];
 
-    console.log(slides.map ((i,index) => i + 'yeah'))
     return (
         <>
             <Swiper

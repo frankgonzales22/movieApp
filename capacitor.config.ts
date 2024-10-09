@@ -9,6 +9,10 @@ const config: CapacitorConfig = {
       "scopes": ["profile", "email"],
       "serverClientId": "61798046603-fvtf465vaeqlnp4ppp2a6803uehs6imv.apps.googleusercontent.com",
       "forceCodeForRefreshToken": true
+    },
+    FacebookLogin: {
+      appId: "1271371767195227",
+      appName: "St. Peter Life Plan eStore",
     }
   }
 
