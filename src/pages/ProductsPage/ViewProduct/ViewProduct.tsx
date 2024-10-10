@@ -1,10 +1,12 @@
-import { IonAccordion, IonAccordionGroup, IonButton, IonCard, IonCardContent, IonCheckbox, IonCol, IonContent, IonFooter, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonRow, IonTitle, IonToolbar } from '@ionic/react';
+import { IonAccordion, IonAccordionGroup, IonButton, IonCard, IonCardContent, IonCheckbox, IonCol, IonContent, IonFooter, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonRow, IonTitle, IonToolbar, isPlatform } from '@ionic/react';
 import { cartOutline, chevronBackOutline } from 'ionicons/icons';
 import React, { useRef } from 'react';
 import { useLocation } from 'react-router-dom'; // Import useLocation
 import { Product } from '../products';
 import TitleViewAll from '../../../components/TitleViewAll/TitleViewAll';
-import svg1 from '../../../assets/png/svg/docs_png.png'
+import freeLook from '../../../assets/png/svg/prelook.png'
+import transfer from '../../../assets/png/svg/transfer.png'
+import assignability from '../../../assets/png/svg/assign.png'
 import './ViewProduct.css'
 
 interface LocationState {
@@ -30,6 +32,22 @@ const ViewProduct: React.FC = () => {
         }
     ]
 
+    const planFeatures = [
+        {
+            title: 'Transferability',
+            image: transfer
+        },
+        {
+            title: 'Assignability',
+            image: assignability
+        },
+        {
+            title: 'Free-look Period',
+            image: freeLook
+        },
+
+    ]
+
     const checkboxRef = useRef<HTMLIonCheckboxElement>(null);
 
     const handleItemClick = () => {
@@ -37,6 +55,9 @@ const ViewProduct: React.FC = () => {
             checkboxRef.current.checked = !checkboxRef.current.checked; // Toggle the checkbox state
         }
     };
+
+
+
     return (
         <IonPage >
             <IonContent className='viewProduct'>
@@ -110,7 +131,7 @@ const ViewProduct: React.FC = () => {
 
                 <IonGrid>
                     <IonRow>
-                        {[1, 2, 3].map((card, index) => (
+                        {planFeatures.map((feature, index) => (
                             <IonCol key={index} size="4"> {/* Adjust size if needed */}
                                 <IonCard
                                     style={{
@@ -125,7 +146,7 @@ const ViewProduct: React.FC = () => {
                                     <div
                                         style={{
                                             height: "50px", // Adjust height if needed
-                                            backgroundImage: `url(${svg1})`,
+                                            backgroundImage: `url(${feature.image})`,
                                             backgroundSize: "contain",
                                             backgroundPosition: "center",
                                             backgroundRepeat: "no-repeat",
@@ -135,7 +156,7 @@ const ViewProduct: React.FC = () => {
                                     {/* Title */}
                                     <IonCardContent>
                                         <p>
-                                            <strong>Card Title {index + 1}</strong>
+                                            <strong>{feature.title}</strong>
                                         </p>
                                     </IonCardContent>
                                 </IonCard>
@@ -205,7 +226,7 @@ const ViewProduct: React.FC = () => {
             </IonContent>
 
 
-            <IonFooter style={{ display: 'flex', padding: 0 }}>
+            <IonFooter style={{ display: 'flex', padding: 0, height  : isPlatform('android') ? '50px' : '' }} >
                 <IonButton
                     fill="clear"
                     style={{
