@@ -84,7 +84,7 @@ const InputPassword: React.FC = () => {
                         marginRight: '20px',
                         minHeight: '50px'
                     }}>
-                    Continue
+                    Log In
                 </IonButton>
                 <IonLoading trigger="open-loading" message="Logging in..." duration={900} />
 

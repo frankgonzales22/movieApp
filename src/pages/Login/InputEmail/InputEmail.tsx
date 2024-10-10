@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import "@codetrix-studio/capacitor-google-auth";
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { FACEBOOK_APP_ID, GOOGLE_AUTH_ID } from '../../../googleAuthId';
+import { Device, DeviceInfo } from "@capacitor/device";
 
 import { FacebookLogin, FacebookLoginResponse } from '@capacitor-community/facebook-login';
 
@@ -35,26 +36,32 @@ const InputEmail: React.FC = () => {
 
 
     const signIn = async () => {
-        try {
-            const result = await GoogleAuth.signIn();
+        const result = await GoogleAuth.signIn();
+        // const deviceInfo = await Device.getInfo();
+        // if ((deviceInfo as unknown as DeviceInfo).platform === "web") {
+        //     await GoogleAuth.signIn();
+        // }
+        // if (result) {
+        //     console.log('result', result)
+        //     history.push({
+        //         pathname: '/app/tab1',
+        //         state: {
+        //             name: result.name,
+        //             image: result.imageUrl,
+        //             email: result.email,
+        //         },
+        //     });
+            history.push("/inputPassword");
 
-            if (result) {
-                console.log('result', result)
-                history.push({
-                    pathname: '/app/tab1',
-                    state: {
-                        name: result.name,
-                        image: result.imageUrl,
-                        email: result.email,
-                    },
-                });
-            }
-        } catch (error) {
-            console.error('Google Sign-In failed', error);
-        }
+        // }
+        // try {
+
+
+        // } catch (error) {
+        //     console.error('Google Sign-In failed', error);
+        // }
+        // history.push("/inputPassword");
     };
-
-
 
     const loadFacebookSDK = () => {
         return new Promise((resolve, reject) => {
@@ -105,7 +112,7 @@ const InputEmail: React.FC = () => {
                         )
                             .then((res) => res.json())
                             .then((data) => {
-                                console.log('datass',data)
+                                console.log('datass', data)
                                 setUser({
                                     name: data.name,
                                     email: data.email,
@@ -131,40 +138,40 @@ const InputEmail: React.FC = () => {
         }
     };
 
-const facebookSignIn1 = async () => {
-    try {
-        const FACEBOOK_PERMISSIONS = ['email', 'public_profile'];
+    const facebookSignIn1 = async () => {
+        try {
+            const FACEBOOK_PERMISSIONS = ['email', 'public_profile'];
 
-        // Perform login
-        const result: FacebookLoginResponse = await FacebookLogin.login({ permissions: FACEBOOK_PERMISSIONS });
+            // Perform login
+            const result: FacebookLoginResponse = await FacebookLogin.login({ permissions: FACEBOOK_PERMISSIONS });
 
-        if (result.accessToken) {
-            const accessToken = result.accessToken.token;
+            if (result.accessToken) {
+                const accessToken = result.accessToken.token;
 
-            // Fetch user info from Facebook Graph API
-            const response = await fetch(
-                `https://graph.facebook.com/me?fields=id,name,email,picture.width(200).height(200)&access_token=${accessToken}`
-            );
-            const data = await response.json();
+                // Fetch user info from Facebook Graph API
+                const response = await fetch(
+                    `https://graph.facebook.com/me?fields=id,name,email,picture.width(200).height(200)&access_token=${accessToken}`
+                )
+                const data = await response.json()
 
-            console.log('Facebook data', data);
+                console.log('Facebook data', data)
 
-            // Proceed with navigation after login
-            history.push({
-                pathname: '/app/tab1',
-                state: {
-                    name: data.name,
-                    email: data.email,
-                    imageUrl: data.picture?.data?.url,
-                },
-            });
-        } else {
-            console.error('Facebook login failed: No access token');
+                // Proceed with navigation after login
+                history.push({
+                    pathname: '/app/tab1',
+                    state: {
+                        name: data.name,
+                        email: data.email,
+                        imageUrl: data.picture?.data?.url,
+                    },
+                });
+            } else {
+                console.error('Facebook login failed: No access token');
+            }
+        } catch (error) {
+            console.error('Facebook Sign-In failed', error);
         }
-    } catch (error) {
-        console.error('Facebook Sign-In failed', error);
-    }
-};
+    };
 
     return (
         <IonPage>
@@ -172,7 +179,6 @@ const facebookSignIn1 = async () => {
                 <div className='img-style'>
                     <div><i>Nawa'y bawat pamilya ay may St. Peter Life Plan</i></div>
                 </div>
-
                 <IonGrid style={{
                     fontWeight: '600',
                     margin: '40px 20px 20px 20px'
@@ -197,7 +203,6 @@ const facebookSignIn1 = async () => {
                                 //  border : '1px solid black', 
                                 //  padding : '5px'
                             }}
-
                         />
                     </IonRow>
 
@@ -211,7 +216,6 @@ const facebookSignIn1 = async () => {
                             }}>
                             Continue
                         </IonButton>
-
                     </IonRow>
 
                     {/* Center the "or" text */}
@@ -226,15 +230,13 @@ const facebookSignIn1 = async () => {
                             or
                         </IonText>
                     </IonRow>
-
                     <IonRow className='sso-buttons'>
                         <IonCol size='3'>
 
-                            <IonButton expand="block" id='open-loading'
+                            <IonButton expand="block"
                                 onClick={signIn}>
                                 <FcGoogle size={20} />
                             </IonButton>
-                            <IonLoading trigger="open-loading" message="Logging in..." duration={3000} />
 
                         </IonCol>
                         <IonCol size='3'>
@@ -262,7 +264,6 @@ const facebookSignIn1 = async () => {
                             &nbsp;and acknowledge that you’ve read our <span style={{ color: 'blue' }}>Privacy Policy</span>.
                         </IonText>
                     </IonRow>
-
                 </IonGrid>
             </IonContent>
         </IonPage>

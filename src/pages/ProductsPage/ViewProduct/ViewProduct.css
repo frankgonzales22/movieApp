@@ -1,0 +1,10 @@
+.viewProduct .price ion-item {
+    --background: #F4F4F4;
+    margin: 10px;
+    border: 1px solid transparent; /* Default transparent border */
+}
+
+.viewProduct .price ion-item:active {
+    --background: #FEC7B6; /* Change background when active */
+    border: 1px solid #FF7043; /* Add border when active */
+}
