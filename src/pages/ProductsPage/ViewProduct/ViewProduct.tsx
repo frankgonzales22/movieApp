@@ -1,6 +1,6 @@
 import { IonAccordion, IonAccordionGroup, IonButton, IonCard, IonCardContent, IonCheckbox, IonCol, IonContent, IonFooter, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonRow, IonTitle, IonToolbar, isPlatform } from '@ionic/react';
 import { cartOutline, chevronBackOutline } from 'ionicons/icons';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom'; // Import useLocation
 import { Product } from '../products';
 import TitleViewAll from '../../../components/TitleViewAll/TitleViewAll';
@@ -48,16 +48,23 @@ const ViewProduct: React.FC = () => {
 
     ]
 
-    const checkboxRef = useRef<HTMLIonCheckboxElement>(null);
+    const [isChecked, setIsChecked] = useState(false);
 
     const handleItemClick = () => {
-        if (checkboxRef.current) {
-            checkboxRef.current.checked = !checkboxRef.current.checked; // Toggle the checkbox state
-        }
+        setIsChecked(prevChecked => !prevChecked);  // Toggle the checkbox state
     };
 
+    const [selectedPayment, setSelectedPayment] = useState<string>('spot-cash'); // Default selected payment option
+    const handlePaymentClick = (payment: string) => {
+        if (selectedPayment === payment) {
+            setSelectedPayment(''); // Deselect if the same payment is clicked
+        } else {
+            setSelectedPayment(payment); // Select the clicked payment
+        }
+    };
+    const isSelected = (payment: string) => selectedPayment === payment;
 
-
+    console.log('sele', selectedPayment)
     return (
         <IonPage >
             <IonContent className='viewProduct'>
@@ -177,7 +184,11 @@ const ViewProduct: React.FC = () => {
                     </IonRow>
                 </div>
                 <div className='price'>
-                    <IonItem lines="none"  >
+                    <IonItem
+                        lines="none"
+                        onClick={() => handlePaymentClick('spot-cash')}
+                        className={isSelected('spot-cash') ? 'selected' : ''}
+                    >
                         <IonLabel slot='start'>Spot-cash Payment</IonLabel>
                         <IonLabel slot='end'>₱47,700</IonLabel>
                     </IonItem>
@@ -196,37 +207,53 @@ const ViewProduct: React.FC = () => {
                     </IonRow>
                 </div>
                 <div className='price'>
-                    <IonItem lines="none"  >
+                    <IonItem
+                        lines="none"
+                        onClick={() => handlePaymentClick('annual')}
+                        className={isSelected('annual') ? 'selected' : ''}
+                    >
                         <IonLabel slot='start'>Annualy</IonLabel>
                         <IonLabel slot='end'>₱10,600</IonLabel>
                     </IonItem>
-                    <IonItem lines="none">
+                    <IonItem
+                        lines="none"
+                        onClick={() => handlePaymentClick('semi-annual')}
+                        className={isSelected('semi-annual') ? 'selected' : ''}
+                    >
                         <IonLabel slot='start'>Semi-Annualy</IonLabel>
                         <IonLabel slot='end'>₱5,620</IonLabel>
                     </IonItem>
-                    <IonItem lines="none">
-                        <IonLabel slot='start'>Quarterly</IonLabel>
+                    <IonItem
+                        lines="none"
+                        onClick={() => handlePaymentClick('quarterly')}
+                        className={isSelected('quarterly') ? 'selected' : ''}
+                
+                    >
+                        <IonLabel slot='start' >Quarterly</IonLabel>
                         <IonLabel slot='end'>₱2,915</IonLabel>
                     </IonItem>
-                    <IonItem lines="none">
+                    <IonItem
+                        lines="none"
+                        onClick={() => handlePaymentClick('monthly')}
+                        className={isSelected('monthly') ? 'selected' : ''}
+                    >
                         <IonLabel slot='start'>Monthly</IonLabel>
                         <IonLabel slot='end'>₱1,000</IonLabel>
                     </IonItem>
                 </div>
 
                 <IonItem button onClick={handleItemClick} detail={false}>
-                    <IonCheckbox ref={checkboxRef} slot="start" aria-label="Toggle task completion" />
+                    <IonCheckbox checked={isChecked} onIonChange={handleItemClick} slot="start" aria-label="Toggle task completion" />
                     <div style={{ marginLeft: '5px', fontSize: '11px' }}>
                         I have read and understood the
                         <span style={{ color: 'blue', }}> BENEFITS AND FEATURES </span>
                         of the plan.
                     </div>
                 </IonItem>
-
             </IonContent>
 
 
-            <IonFooter style={{ display: 'flex', padding: 0, height  : isPlatform('android') ? '50px' : '' }} >
+            <IonFooter style={{ display: 'flex', padding: 0, height: isPlatform('android') ? '50px' : '' }} >
                 <IonButton
                     fill="clear"
                     style={{
