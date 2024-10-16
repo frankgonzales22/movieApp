@@ -1,28 +1,35 @@
+import React, { useEffect, useState } from 'react';
 import { IonCard, IonCardContent } from "@ionic/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { useHistory } from "react-router-dom"; // Import useHistory
+import { useHistory } from "react-router-dom";
+import { Product, products } from "../../pages/ProductsPage/products";
+import { Storage } from '@ionic/storage';
+
+// Your product images here...
 import georgeImage from "../../assets/images/george.jpg";
 import gregory from "../../assets/images/gregory.jpg";
 import dom from "../../assets/images/dom.jpg";
 import claire from "../../assets/images/claire.jpg";
-import { Product, products } from "../../pages/ProductsPage/products";
 
-// const productData = [
-//   { name: "St. George", price: "1,000/Month", plan: "Traditional Plan", image: georgeImage },
-//   { name: "St. Gregory", price: "1,100/Month", plan: "Traditional Plan", image: gregory },
-//   { name: "St. Dominique", price: "1,285/Month", plan: "Traditional Plan", image: dom },
-//   { name: "St. Claire", price: "1,870/Month", plan: "Traditional Plan", image: claire },
-// ];
+const ProductBanner: React.FC = () => {
+    const [storage, setStorage] = useState<Storage | null>(null);
+    const history = useHistory();
 
-const ProductBanner = () => {
-    const history = useHistory(); // Initialize useHistory hook
+    useEffect(() => {
+        const initStorage = async () => {
+            const storage = new Storage();  // No arguments passed
+            await storage.create();         // Create the storage instance
+            setStorage(storage);            // Set the storage in state
+        };
+        initStorage();
+    }, []);
 
-    const handleProductClick = (product: Product) => {
-        history.push({
-            pathname: "/viewproduct",
-            state: { product }, // Pass product data as state
-        });
+    const handleProductClick = async (product: Product) => {
+        if (storage) {
+            await storage.set('selectedProduct', product); // Store product in Ionic Storage
+            history.push('/viewproduct'); // Navigate to view product
+        }
     };
 
     return (

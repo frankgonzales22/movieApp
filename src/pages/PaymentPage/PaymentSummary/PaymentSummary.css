@@ -1,0 +1,54 @@
+.payment-summary ion-toolbar {
+    --background: #177D54;
+    --border-color: #177D54;
+    --color: white;
+    /* --min-height: 145px; */
+    display: flex;
+    position: relative;
+}
+
+.metadata-end-wrapper {
+    position: absolute;
+
+    top: 10px;
+    inset-inline-end: 10px;
+
+    font-size: 1.5rem;
+
+    display: flex;
+    align-items: center;
+}
+
+ion-label strong {
+    display: block;
+    max-width: calc(100% - 60px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+ion-label ion-note {
+    font-size: 0.9rem;
+
+}
+
+.personal-info-item {
+    /* background-color: #f6f6f6; */
+    /* Light gray-blue background */
+    border-radius: 10px;
+    /* Rounded corners */
+    padding: 0 10px 15px 15px;
+    margin-top: 5px;
+
+}
+
+/* Optional: Additional styles for the text */
+.personal-info-item ion-label {
+    color: #333;
+    /* Darker text */
+}
+
+.personal-info-item ion-note {
+    font-size: 0.9rem;
+    color: #555;
+    /* Slightly lighter text for notes */
+}

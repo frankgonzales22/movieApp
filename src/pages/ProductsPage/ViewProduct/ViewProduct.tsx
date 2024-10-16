@@ -1,20 +1,19 @@
 import { IonAccordion, IonAccordionGroup, IonButton, IonCard, IonCardContent, IonCheckbox, IonCol, IonContent, IonFooter, IonGrid, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonPage, IonRow, IonTitle, IonToolbar, isPlatform } from '@ionic/react';
 import { cartOutline, chevronBackOutline } from 'ionicons/icons';
-import React, { useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom'; // Import useLocation
+import React, { useEffect, useRef, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom'; // Import useLocation
 import { Product } from '../products';
 import TitleViewAll from '../../../components/TitleViewAll/TitleViewAll';
 import freeLook from '../../../assets/png/svg/prelook.png'
 import transfer from '../../../assets/png/svg/transfer.png'
 import assignability from '../../../assets/png/svg/assign.png'
 import './ViewProduct.css'
+import { Storage } from '@ionic/storage';
 
 interface LocationState {
     product?: Product; // Make product optional to avoid runtime errors when there's no state
 }
 const ViewProduct: React.FC = () => {
-    const location = useLocation<LocationState>();
-    const { product } = location.state || {}; // Retrieve product data from location.state
 
 
     const planBenefits = [
@@ -24,7 +23,10 @@ const ViewProduct: React.FC = () => {
         },
         {
             title: 'Insurance coverages',
-            content: "The following insurance coverages if you are in good health and you are between the insurable ages of 18 to 60 years (not beyond your 60th birthday) at the time of purchase of your plan:Cash Assistance – your beneficiaries shall receive an amount equivalent to the Gross Contract Price if you die within 10 years from the date of effectivity of the plan and you have not reached the age of 65 upon death. Payment of Unpaid Balance – the unpaid balance of your plan will be considered fully paid if you die while paying for this plan and you have not reached the age of 65 upon death. Waiver of Installment – you will be exempted from paying the balance of your plan if you suffer from an uninterrupted disability of at least six (6) months during the paying period and you have not reached the age of 60 at the start of your disability."
+            content: `The following insurance coverages if you are in good health and you are between the insurable ages of 18 to 60 years (not beyond your 60th birthday) at the time of purchase of your plan:<br/><br/>
+            <b>Cash Assistance</b> – your beneficiaries shall receive an amount equivalent to the Gross Contract Price if you die within 10 years from the date of effectivity of the plan and you have not reached the age of 65 upon death.<br/><br/>
+            <b>Payment of Unpaid Balance</b> – the unpaid balance of your plan will be considered fully paid if you die while paying for this plan and you have not reached the age of 65 upon death.<br/><br/>
+            <b>Waiver of Installment</b> – you will be exempted from paying the balance of your plan if you suffer from an uninterrupted disability of at least six (6) months during the paying period and you have not reached the age of 60 at the start of your disability.`
         },
         {
             title: 'Accidental Death and Dismemberment',
@@ -35,15 +37,18 @@ const ViewProduct: React.FC = () => {
     const planFeatures = [
         {
             title: 'Transferability',
-            image: transfer
+            image: transfer,
+            caption: 'You may transfer your plan to another living person.'
         },
         {
             title: 'Assignability',
-            image: assignability
+            image: assignability,
+            caption: 'You may assign the plan to any deceased person, however, any insurance coverage provided to the transferor shall automatically terminate, provided that the balance, if any, is paid before the service is rendered.'
         },
         {
             title: 'Free-look Period',
-            image: freeLook
+            image: freeLook,
+            caption: 'You may cancel the plan within 15 days from the date of effectivity of the plan and you will receive a refund of your payment in full.'
         },
 
     ]
@@ -64,7 +69,49 @@ const ViewProduct: React.FC = () => {
     };
     const isSelected = (payment: string) => selectedPayment === payment;
 
-    console.log('sele', selectedPayment)
+
+
+    const [selectedCard, setSelectedCard] = useState<string | null>(null);
+
+    const handleCardClick = (title: string) => {
+        // Toggle selected card
+        setSelectedCard((prev) => (prev === title ? null : title));
+    };
+
+
+
+ 
+    const [storage, setStorage] = useState<Storage | null>(null);
+    const [product, setProduct] = useState<Product | null>(null);
+    const history = useHistory();
+    const location = useLocation<LocationState>();
+
+    useEffect(() => {
+        const initStorage = async () => {
+            const storageInstance = new Storage();
+            await storageInstance.create();
+            setStorage(storageInstance);
+
+            // Retrieve product from storage when initialized
+            const storedProduct = await storageInstance.get('selectedProduct');
+            setProduct(storedProduct);
+        };
+
+        initStorage();
+    }, []);
+
+    // Optionally, you could still retrieve from location.state for fallback
+    useEffect(() => {
+        if (!product && location.state?.product) {
+            setProduct(location.state.product);
+        }
+    }, [location.state, product]);
+
+    const handleBuyNow = () => {
+        history.push("/paymentSummary");
+    };
+
+
     return (
         <IonPage >
             <IonContent className='viewProduct'>
@@ -125,9 +172,12 @@ const ViewProduct: React.FC = () => {
                             <IonItem slot="header" color="light">
                                 <IonLabel>{benefit.title}</IonLabel>
                             </IonItem>
-                            <div className="ion-padding" slot="content" style={{ padding: '10px' }}>
-                                {benefit.content}
-                            </div>
+                            <div
+                                className="ion-padding"
+                                slot="content"
+                                style={{ padding: '10px' }}
+                                dangerouslySetInnerHTML={{ __html: benefit.content }} // Render HTML content
+                            />
                         </IonAccordion>
                     ))}
                 </IonAccordionGroup>
@@ -141,22 +191,25 @@ const ViewProduct: React.FC = () => {
                         {planFeatures.map((feature, index) => (
                             <IonCol key={index} size="4"> {/* Adjust size if needed */}
                                 <IonCard
+                                    onClick={() => handleCardClick(feature.title)}
                                     style={{
-                                        // padding: "15px",
                                         paddingTop: '10px',
-                                        textAlign: "center",
-                                        borderRadius: "8px",
-                                        height: "120px", // Ensures all cards have equal height
+                                        textAlign: 'center',
+                                        borderRadius: '8px',
+                                        height: '120px',
+                                        border: selectedCard === feature.title ? '2px solid #FF7043' : 'none',
+                                        backgroundColor: selectedCard === feature.title ? '#FEC7B6' : 'white',
+                                        transition: 'background-color 0.3s ease-in-out, border-color 0.3s ease-in-out',
                                     }}
                                 >
                                     {/* Image */}
                                     <div
                                         style={{
-                                            height: "50px", // Adjust height if needed
+                                            height: '50px',
                                             backgroundImage: `url(${feature.image})`,
-                                            backgroundSize: "contain",
-                                            backgroundPosition: "center",
-                                            backgroundRepeat: "no-repeat",
+                                            backgroundSize: 'contain',
+                                            backgroundPosition: 'center',
+                                            backgroundRepeat: 'no-repeat',
                                         }}
                                     ></div>
 
@@ -171,6 +224,22 @@ const ViewProduct: React.FC = () => {
                         ))}
                     </IonRow>
                 </IonGrid>
+
+                {selectedCard && (
+                    <IonCard
+                        // onClick={() => console.log(feature.title)}
+                        style={{
+                            padding: "10px",
+                            margin: '10px',
+                        }}
+                    >
+                        <div >
+                            {planFeatures.find((feature) => feature.title === selectedCard)?.caption}
+                        </div>
+                    </IonCard>
+                )}
+
+
 
                 <div style={{
                     margin: '5px',
@@ -227,7 +296,7 @@ const ViewProduct: React.FC = () => {
                         lines="none"
                         onClick={() => handlePaymentClick('quarterly')}
                         className={isSelected('quarterly') ? 'selected' : ''}
-                
+
                     >
                         <IonLabel slot='start' >Quarterly</IonLabel>
                         <IonLabel slot='end'>₱2,915</IonLabel>
@@ -242,8 +311,8 @@ const ViewProduct: React.FC = () => {
                     </IonItem>
                 </div>
 
-                <IonItem button onClick={handleItemClick} detail={false}>
-                    <IonCheckbox checked={isChecked} onIonChange={handleItemClick} slot="start" aria-label="Toggle task completion" />
+                <IonItem button onClick={handleItemClick} detail={false} lines='none'>
+                    <IonCheckbox onClick={handleItemClick} checked={isChecked} onIonChange={handleItemClick} slot="start" aria-label="Toggle task completion" />
                     <div style={{ marginLeft: '5px', fontSize: '11px' }}>
                         I have read and understood the
                         <span style={{ color: 'blue', }}> BENEFITS AND FEATURES </span>
@@ -263,11 +332,13 @@ const ViewProduct: React.FC = () => {
                         color: 'black',
                         textTransform: 'none',  // Disable text capitalization
                     }}
+
                 >
                     <IonIcon className="icon" icon={cartOutline} />
                     Add to Cart
                 </IonButton>
                 <IonButton
+                    onClick={handleBuyNow}
                     fill="clear"
                     style={{
                         flex: '1',
@@ -277,6 +348,7 @@ const ViewProduct: React.FC = () => {
                         color: '#fff',
                         textTransform: 'none',  // Disable text capitalization
                     }}
+
                 >
                     Buy Now
                 </IonButton>

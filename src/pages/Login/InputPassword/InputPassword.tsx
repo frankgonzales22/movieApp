@@ -70,7 +70,7 @@ const InputPassword: React.FC = () => {
             <IonFooter
                 className="custom-footer"
                 style={{
-                    backgroundColor : 'white'
+                    backgroundColor: 'white'
                 }}
             >
                 <IonButton

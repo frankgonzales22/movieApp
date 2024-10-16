@@ -3,6 +3,8 @@ import React from 'react';
 import { IonCard, IonCardContent, IonButton, IonIcon } from '@ionic/react';
 import { cartOutline } from "ionicons/icons";
 import '../ProductsPage.css';  // Create a separate CSS file if needed
+import { Product } from '../products';
+import { useHistory } from 'react-router-dom';
 
 interface CremationalPlansProps {
     product: {
@@ -14,9 +16,19 @@ interface CremationalPlansProps {
 }
 
 const CremationalPlans: React.FC<CremationalPlansProps> = ({ product }) => {
+    const history = useHistory(); // Initialize useHistory hook
+
+    const handleProductClick = (product: Product) => {
+        history.push({
+            pathname: "/viewproduct",
+            state: { product }, // Pass product data as state
+        });
+    };
+
     return (
         <React.Fragment>
-            <div style={{ display: 'block', width: 'inherit' }}>
+            <div style={{ display: 'block', width: 'inherit' }} onClick={() => handleProductClick(product)}
+            >
                 <IonCard
                     className='ion-card'
                     style={{ height: '360px' }}
